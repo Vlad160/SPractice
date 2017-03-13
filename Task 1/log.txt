@@ -1,0 +1,4 @@
+Author: Roman Korol <korolroman98@gmail.com>
+Date:   Sat Feb 11 22:39:23 2017 +0300
+
+    add .gitignore
