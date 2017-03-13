@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="animations.js"></script>
+    <script src="data.js"></script>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+    <div class="control-panel">
+        <div class="control-panel-panels">
+            <div class="log-in-panel" id="log-in-panel-id" onmouseleave="hideLogInPanel()" onmouseover="showLogInPanel()">
+                <div class="log-in-panel-text">
+                    <p>Login:</p>
+                    <p>Password:</p>
+                </div>
+                <div class="log-in-panel-inputs">
+                    <input type="text">
+                    <input type="password">
+                </div>
+                <button>Log In</button>
+
+            </div>
+            <div class="bug-report-panel" id="bug-report-panel-id" onmouseover="showBugReportPanel()" onmouseleave="hideBugReportPanel()">
+                <input type="text" placeholder="Title your problem">
+                <textarea placeholder="Describe your problem"></textarea>
+                <button>Submit</button>
+            </div>
+            <div class="add-news-panel" id="add-news-panel-id" onmouseover="showAddNewsPanel()" onmouseleave="hideAddNewsPanel()">
+                <input type="text" placeholder="Enter article title">
+                <textarea placeholder="Enter article summary"></textarea>
+                <textarea placeholder="Enter article's main content" id="article-main-content-textarea-id"></textarea>
+                <button>Submit</button>
+            </div>
+        </div>
+        <div class="control-panel-buttons">
+            <button id="log-in-button" onmouseover="showLogInPanel()" onmouseleave="hideLogInPanel()">Log In</button>
+            <button id="bug-report-button" onmouseover="showBugReportPanel()" onmouseleave="hideBugReportPanel()">Bug report</button>
+            <button id="add-news-button" onmouseover="showAddNewsPanel()" onmouseleave="hideAddNewsPanel()">Add news</button>
+        </div>
+    </div>
+
+
+    <div class="main" id="main-id">
+        <div class="news-list" id="news-list-id">
+
+        </div>
+        <div class="news-expansion" id="news-expansion-id">
+
+        </div>
+    </div>
+
+
+    <div class="sort-menu" id="sort-menu-id" onmouseover="showSortPanel()" onmouseleave="hideSortPanel()">
+        <button id="sort-button"><p>Sort</p></button>
+        <div class="sort-panel" id="sort-panel-id">
+
+        </div>
+    </div>
+
+</body>
+</html>
