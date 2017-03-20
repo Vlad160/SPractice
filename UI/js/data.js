@@ -2,8 +2,32 @@
  * Created by Роман on 3/3/2017.
  */
 
-//Here's data:
+    //Here's data:
 var skipped = 0;
+var bugReports = (function() {
+    var reports = [];
+
+    function addReport(param) {
+        if (param.length) {
+            param.forEach(function (item) {
+                reports.push({id: new Date().getTime().toString(), title: item.title, content: item.content});
+            });
+        } else {
+            reports.push({id: new Date().getTime().toString(), title: param.title, content: param.content});
+        }
+    }
+    function getReports() {
+        return reports;
+    }
+    function printReports() {
+        console.log(reports);
+    }
+    return {
+        addReport: addReport,
+        getReports: getReports,
+        printReports: printReports
+    }
+}());
 var database = (function() {
     var articles = [
         {
@@ -105,6 +129,41 @@ var database = (function() {
             createdAt: new Date(2015, 8, 10, 10, 14, 0, 0),
             author: "Kendrick Lamar",
             content: "To Pimp a Butterfly is the third studio album by American rapper Kendrick Lamar. It was released on " +
+            "March 15, 2015, by Top Dawg Entertainment, Aftermath Entertainment and Interscope Records.[1][2] The album was " +
+            "recorded in studios throughout the United States, with production from Sounwave, Terrace Martin, Taz \"Ti$a\" " +
+            "Arnold, Thundercat, Rahki, LoveDragon, Flying Lotus, Pharrell Williams, Boi-1da, and several other high-profile " +
+            "hip hop producers, as well as executive production from Dr. Dre and Anthony \"Top Dawg\" Tiffith. The album " +
+            "incorporates elements of free jazz, funk, soul, spoken word, and the avant-garde and explores a variety of " +
+            "political and personal themes concerning African-American culture, racial inequality, depression, and " +
+            "institutional discrimination. To Pimp a Butterfly is the third studio album by American rapper Kendrick Lamar. It was released on " +
+            "March 15, 2015, by Top Dawg Entertainment, Aftermath Entertainment and Interscope Records.[1][2] The album was " +
+            "recorded in studios throughout the United States, with production from Sounwave, Terrace Martin, Taz \"Ti$a\" " +
+            "Arnold, Thundercat, Rahki, LoveDragon, Flying Lotus, Pharrell Williams, Boi-1da, and several other high-profile " +
+            "hip hop producers, as well as executive production from Dr. Dre and Anthony \"Top Dawg\" Tiffith. The album " +
+            "incorporates elements of free jazz, funk, soul, spoken word, and the avant-garde and explores a variety of " +
+            "political and personal themes concerning African-American culture, racial inequality, depression, and " +
+            "institutional discrimination. To Pimp a Butterfly is the third studio album by American rapper Kendrick Lamar. It was released on " +
+            "March 15, 2015, by Top Dawg Entertainment, Aftermath Entertainment and Interscope Records.[1][2] The album was " +
+            "recorded in studios throughout the United States, with production from Sounwave, Terrace Martin, Taz \"Ti$a\" " +
+            "Arnold, Thundercat, Rahki, LoveDragon, Flying Lotus, Pharrell Williams, Boi-1da, and several other high-profile " +
+            "hip hop producers, as well as executive production from Dr. Dre and Anthony \"Top Dawg\" Tiffith. The album " +
+            "incorporates elements of free jazz, funk, soul, spoken word, and the avant-garde and explores a variety of " +
+            "political and personal themes concerning African-American culture, racial inequality, depression, and " +
+            "institutional discrimination. To Pimp a Butterfly is the third studio album by American rapper Kendrick Lamar. It was released on " +
+            "March 15, 2015, by Top Dawg Entertainment, Aftermath Entertainment and Interscope Records.[1][2] The album was " +
+            "recorded in studios throughout the United States, with production from Sounwave, Terrace Martin, Taz \"Ti$a\" " +
+            "Arnold, Thundercat, Rahki, LoveDragon, Flying Lotus, Pharrell Williams, Boi-1da, and several other high-profile " +
+            "hip hop producers, as well as executive production from Dr. Dre and Anthony \"Top Dawg\" Tiffith. The album " +
+            "incorporates elements of free jazz, funk, soul, spoken word, and the avant-garde and explores a variety of " +
+            "political and personal themes concerning African-American culture, racial inequality, depression, and " +
+            "institutional discrimination. To Pimp a Butterfly is the third studio album by American rapper Kendrick Lamar. It was released on " +
+            "March 15, 2015, by Top Dawg Entertainment, Aftermath Entertainment and Interscope Records.[1][2] The album was " +
+            "recorded in studios throughout the United States, with production from Sounwave, Terrace Martin, Taz \"Ti$a\" " +
+            "Arnold, Thundercat, Rahki, LoveDragon, Flying Lotus, Pharrell Williams, Boi-1da, and several other high-profile " +
+            "hip hop producers, as well as executive production from Dr. Dre and Anthony \"Top Dawg\" Tiffith. The album " +
+            "incorporates elements of free jazz, funk, soul, spoken word, and the avant-garde and explores a variety of " +
+            "political and personal themes concerning African-American culture, racial inequality, depression, and " +
+            "institutional discrimination. To Pimp a Butterfly is the third studio album by American rapper Kendrick Lamar. It was released on " +
             "March 15, 2015, by Top Dawg Entertainment, Aftermath Entertainment and Interscope Records.[1][2] The album was " +
             "recorded in studios throughout the United States, with production from Sounwave, Terrace Martin, Taz \"Ti$a\" " +
             "Arnold, Thundercat, Rahki, LoveDragon, Flying Lotus, Pharrell Williams, Boi-1da, and several other high-profile " +
@@ -294,24 +353,21 @@ var database = (function() {
 
     }
     function getArticle(id) {
-        var check = false;
-        for (var i = 0; i < articles.length; i++) {
-            if (articles[i].id == id) {
-                check = true;
-                return articles[i];
+        var result = null;
+        articles.forEach(function (item) {
+            if (item.id == id) {
+                result = item;
             }
-        }
-        if (check == false)
-            console.log("Article with id " + id + " not found");
+        });
+        if (result)
+            return result;
         return null;
     }
     function getArticles(skip, number, filterConfig) {
-        if ((skip != undefined) && (number != undefined) && (filterConfig != undefined)) {
+        if ((skip !== undefined) && (number !== undefined) && (filterConfig)) {
             return articles.slice(skip, skip + number).filter(function (obj) {
                 var check = true;
                 Object.keys(filterConfig).forEach(function (item, i) {
-                    console.log(item);
-                    console.log(obj[item]);
                     if (obj[item] != filterConfig[item]) {
                         check = false;
                     }
@@ -319,9 +375,9 @@ var database = (function() {
                 return check;
             });
         }
-        else if ((skip != undefined) && (number != undefined)) {
+        else if ((skip !== undefined) && (number !== undefined)) {
             if ((typeof skip == 'number') && (typeof number == 'number')) {
-                return articles.slice(skip, number);
+                return articles.slice(skip, number + skip);
             }
             else {
                 return articles.slice(skip).filter(function (obj) {
@@ -335,7 +391,7 @@ var database = (function() {
                 });
             }
         }
-        else if (skip != undefined) {
+        else if (skip !== undefined) {
             if (typeof skip == 'number') {
                 return articles.slice(0, skip);
             }
@@ -382,7 +438,8 @@ var database = (function() {
                 index = i.valueOf();
                 break;
             }
-            else index = undefined;
+            else
+                index = undefined;
         }
         if (index == undefined) {
             console.log("Article with id " + id + " not found");
@@ -400,24 +457,22 @@ var database = (function() {
         validateArticle: validateArticle
     };
 }());
-
-
 var articleRenderer = (function() {
     function renderArticles(data) {
         var height = $("#main-id").height();
         height = height / data.length;
         var content;
-        for (var i = 0; i < data.length; i++) {
+        data.forEach(function(article) {
             content = document.createElement("div");
             content.className = "news-preview";
-            content.id = data[i].id;
+            content.id = article.id;
             content.style.height = height + "px";
-            content.innerHTML = "<h1>" + data[i].title + "</h1>";
-            content.innerHTML += "<p>" + data[i].summary + "</p>";
-            content.innerHTML += "<h7>Author: " + data[i].author + "</h7>";
+            content.innerHTML = "<h1>" + article.title + "</h1>";
+            content.innerHTML += "<p>" + article.summary + "</p>";
+            content.innerHTML += "<h7>Author: " + article.author + "</h7>";
             document.getElementById("news-list-id").appendChild(content);
-        }
-
+            content.addEventListener("mouseover", lightenArticle);
+        });
     }
     function removeArticle(id) {
         var elem = document.getElementById(id);

@@ -2,10 +2,8 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" type="text/css" href="styles.css">
-    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu:300" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="animations.js"></script>
-    <script src="data.js"></script>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
@@ -20,22 +18,24 @@
                     <p>Password:</p>
                 </div>
                 <div class="log-in-panel-inputs">
-                    <input type="text">
-                    <input type="password">
+                    <form id="log-in-form-id">
+                        <input type="text">
+                        <input type="password">
+                    </form>
                 </div>
-                <button>Log In</button>
+                <button id="log-in-panel-submit-button-id">Log In</button>
 
             </div>
             <div class="bug-report-panel" id="bug-report-panel-id" onmouseover="showBugReportPanel()" onmouseleave="hideBugReportPanel()">
-                <input type="text" placeholder="Title your problem">
-                <textarea placeholder="Describe your problem"></textarea>
-                <button>Submit</button>
+                <input type="text" placeholder="Title your problem" id="bug-report-title-id">
+                <textarea placeholder="Describe your problem" id="bug-report-content-id"></textarea>
+                <button id="bug-report-panel-submit-button-id">Submit</button>
             </div>
             <div class="add-news-panel" id="add-news-panel-id" onmouseover="showAddNewsPanel()" onmouseleave="hideAddNewsPanel()">
                 <input type="text" placeholder="Enter article title">
                 <textarea placeholder="Enter article summary"></textarea>
                 <textarea placeholder="Enter article's main content" id="article-main-content-textarea-id"></textarea>
-                <button>Submit</button>
+                <button id="add-news-panel-submit-button-id">Submit</button>
             </div>
         </div>
         <div class="control-panel-buttons">
@@ -47,11 +47,13 @@
 
 
     <div class="main" id="main-id">
-        <div class="news-list" id="news-list-id">
+        <div class="left-scroll-div">
+            <div class="news-list" id="news-list-id">
 
+            </div>
         </div>
         <div class="news-expansion" id="news-expansion-id">
-
+            <p id="placeholder-for-news-expansion-id">Choose news from list..</p>
         </div>
     </div>
 
@@ -59,9 +61,21 @@
     <div class="sort-menu" id="sort-menu-id" onmouseover="showSortPanel()" onmouseleave="hideSortPanel()">
         <button id="sort-button"><p>Sort</p></button>
         <div class="sort-panel" id="sort-panel-id">
-
+            <form name="sort-menu">
+                <span>
+                    <input type="text" name="author-input" id="author-input-id"><select id="author-select-id">
+                        <option>Roman Korol</option>
+                        <option>123321  </option>
+                    </select>
+                </span>
+            </form>
         </div>
     </div>
 
+
 </body>
+<script src="js/animations.js"></script>
+<script src="js/data.js"></script>
+<script src="js/events.js"></script>
+<script src="js/backend.js"></script>
 </html>
